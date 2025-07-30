@@ -5,20 +5,25 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@mantine/core';
 
 const photos = [
-    '/images/foto1.jpg',
-    '/images/foto2.jpg',
-    '/images/foto3.jpg',
-    '/images/foto4.jpg',
-    '/images/foto5.jpg',
-    '/images/foto6.jpg',
-    '/images/foto7.jpg',
-    '/images/foto8.jpg',
+    '/pexeso/foto1.png',
+    '/pexeso/foto2.png',
+    '/pexeso/foto3.png',
+    '/pexeso/foto4.png',
+    '/pexeso/foto5.png',
+    '/pexeso/foto6.png',
+    '/pexeso/foto7.png',
+    '/pexeso/foto8.png',
 ];
 
 const generateDeck = () => {
-    const doubled = [...photos, ...photos];
+    const base = photos.map((src, index) => ({
+        id: index, // id = skupina
+        src,
+    }));
+    const doubled = [...base, ...base]; // duplikujeme objekty
     return doubled.sort(() => Math.random() - 0.5);
 };
+
 
 export default function PexesoPage() {
     const router = useRouter();
@@ -62,12 +67,13 @@ export default function PexesoPage() {
 
         if (newFlipped.length === 2) {
             const [i1, i2] = newFlipped;
-            if (deck[i1] === deck[i2]) {
+            if (deck[i1].id === deck[i2].id) {
                 setMatched((prev) => [...prev, i1, i2]);
             }
             setTimeout(() => setFlipped([]), 800);
         }
     };
+
 
     const formatTime = (s) => {
         const m = Math.floor(s / 60).toString().padStart(2, '0');
@@ -76,14 +82,14 @@ export default function PexesoPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center px-2 py-6">
-            <h2 className="text-lg mb-2 font-semibold">Spoj všechny páry, {user?.name} 👀</h2>
-            <p className="mb-4 text-sm text-gray-600">
+        <div className="min-h-screen flex flex-col items-center justify-center px-2 py-6">
+            <h2 className="text-lg mb-2 font-semibold sont-sans">Spoj všechny páry, {user?.name} 👀</h2>
+            <p className="mb-4 text-sm font-mono">
                 Čas: <span className="font-mono">{formatTime(elapsed)}</span>
             </p>
 
             <div className="grid grid-cols-4 gap-2 w-full max-w-sm perspective">
-                {deck.map((src, i) => {
+                {deck.map((card, i) => {
                     const isFlipped = flipped.includes(i) || matched.includes(i);
                     return (
                         <div
@@ -92,11 +98,10 @@ export default function PexesoPage() {
                             className="relative w-full aspect-square"
                         >
                             <div
-                                className={`transition-transform duration-500 w-full h-full [transform-style:preserve-3d] ${isFlipped ? 'rotate-y-180' : ''
-                                    }`}
+                                className={`transition-transform duration-500 w-full h-full [transform-style:preserve-3d] ${isFlipped ? 'rotate-y-180' : ''}`}
                             >
                                 <img
-                                    src={src}
+                                    src={card.src}
                                     alt=""
                                     className="absolute w-full h-full object-cover rounded-md [backface-visibility:hidden] rotate-y-180"
                                 />
@@ -106,7 +111,8 @@ export default function PexesoPage() {
                             </div>
                         </div>
                     );
-                })}
+                })
+                }
             </div>
 
             <Button className="mt-6" disabled={!solved} onClick={() => router.push('/waiting')}>

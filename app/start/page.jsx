@@ -17,9 +17,10 @@ export default function QuizStartPage() {
 
     return (
         <FormProvider {...methods}>
-            <Container size="xs" className="py-10">
-                <h1 className="text-xl font-bold mb-6 text-center">🎁 Narozeninový kvíz</h1>
-                <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-4">
+            <Container size="xs" className="min-h-screen flex flex-col items-center justify-center   text-center px-4">
+                <h1 className="text-xl font-bold mb-6 text-center font-sans tracking-wide">🎁 Narozeninový kvíz</h1>
+                <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-8">
+                    
                     <TextInput
                         label="Tvé jméno"
                         placeholder="Např. Honza"
