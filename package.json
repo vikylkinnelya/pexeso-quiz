@@ -29,6 +29,6 @@
     "tailwindcss": "^4"
   },
   "engines": {
-    "node": "20.19.4"
+    "node": "20.19.3"
   }
 }
