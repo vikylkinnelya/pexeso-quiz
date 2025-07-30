@@ -16,7 +16,6 @@ const cairoMono = Cairo_Play({
     subsets: ["latin"],
     variable: "--font-mono",
     display: "swap",
-
 });
 const nabla = Nabla({
     subsets: ["latin"],
@@ -29,13 +28,15 @@ const robotoFlex = Roboto_Flex({
     subsets: ["latin"],
     variable: "--font-roboto",
     display: "swap",
-
 });
 
 export const metadata = {
-  title: 'Pexeso Quiz',
-  description: 'Personalizovaný narozeninový kvíz',
-  manifest: '/manifest.json',
+    title: "Quiz",
+    description: "Personalizovaný kvíz",
+    manifest: "/manifest.json",
+    icons: {
+        icon: "/favicon.ico",
+    },
 };
 
 export default function RootLayout({ children }) {
@@ -46,17 +47,12 @@ export default function RootLayout({ children }) {
             data-mantine-color-scheme="dark"
         >
             <head>
-                <ColorSchemeScript  defaultColorScheme="dark"/>
+                <ColorSchemeScript defaultColorScheme="dark" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </head>
             <body>
                 <MantineProvider withGlobalStyles withNormalizeCSS defaultColorScheme="dark">
-                    <MapProvider>
-                        
-                        {children}
-
-
-                    </MapProvider>
+                    <MapProvider>{children}</MapProvider>
                 </MantineProvider>
             </body>
         </html>
