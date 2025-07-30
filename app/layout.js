@@ -1,8 +1,7 @@
 import { Barriecito, Cairo_Play, Nabla, Roboto_Flex } from "next/font/google";
-import "./globals.css";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import MapProvider from "@/components/MapProvider";
-
+import '../styles/globals.css'
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 

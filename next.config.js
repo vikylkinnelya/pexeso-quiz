@@ -1,13 +1,28 @@
 // next.config.js
-const withPWA = require('next-pwa')({
-  dest: 'public',
-  register: true,
-  skipWaiting: true,
+const withPWA = require("next-pwa")({
+    dest: "public",
+    register: true,
+    skipWaiting: true,
 });
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+    output: "standalone",
+    experimental: {
+        optimizePackageImports: ["@mantine/core", "@mantine/hooks"],
+    },
+    webpack: (config, { isServer }) => {
+        if (!isServer) {
+            config.resolve.fallback = { ...config.resolve.fallback, fs: false };
+        }
+
+        config.module.rules.push({
+            test: /\.svg$/,
+            use: ["@svgr/webpack"],
+        });
+
+        return config;
+    },
 };
 
 module.exports = withPWA(nextConfig);

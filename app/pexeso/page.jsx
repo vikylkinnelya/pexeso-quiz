@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from '@mantine/core';
+import { Button, Container } from '@mantine/core';
 
 const photos = [
     '/pexeso/foto1.png',
@@ -82,7 +82,7 @@ export default function PexesoPage() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center px-2 py-6">
+        <Container size="xs"  className="min-h-screen flex flex-col items-center justify-center px-2 py-6">
             <h2 className="text-lg mb-2 font-semibold sont-sans">Spoj všechny páry, {user?.name} 👀</h2>
             <p className="mb-4 text-sm font-mono">
                 Čas: <span className="font-mono">{formatTime(elapsed)}</span>
@@ -118,6 +118,6 @@ export default function PexesoPage() {
             <Button className="mt-6" disabled={!solved} onClick={() => router.push('/waiting')}>
                 Pokračovat
             </Button>
-        </div>
+        </Container>
     );
 }

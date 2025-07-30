@@ -20,11 +20,12 @@ export default function QuizStartPage() {
             <Container size="xs" className="min-h-screen flex flex-col items-center justify-center   text-center px-4">
                 <h1 className="text-xl font-bold mb-6 text-center font-sans tracking-wide">🎁 Narozeninový kvíz</h1>
                 <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-8">
-                    
+
                     <TextInput
                         label="Tvé jméno"
                         placeholder="Např. Honza"
-                        {...methods.register('name', { required: true })}
+                        {...methods.register('name', { required: 'Povinné pole' })}
+                        classNames={{ label: 'mb-2' }}
                     />
 
                     <Controller
@@ -37,6 +38,8 @@ export default function QuizStartPage() {
                                 locale="cs"
                                 value={field.value}
                                 onChange={field.onChange}
+                                classNames={{ label: 'mb-2' }}
+
                             />
                         )}
                     />

@@ -133,18 +133,18 @@ export default function RestaurantPage() {
 
     return (
         <Container size="xs" className="py-10 space-y-6">
-            <Text size="xl" fw={700}>🍽️ Najdeme ideální místo na dnešek</Text>
+            <Text size="xl" className='font-sans' fw={700}> Najdeme ideální místo na dnešek</Text>
 
             {questions.map((q, i) =>
                 i === 0 || Object.keys(answers).includes(questions[i - 1].key) ? (
                     <div key={q.key}>
-                        <Text className="mb-2 font-semibold">{q.label}</Text>
+                        <p className="mb-4 font-semibold text-lg">{q.label}</p>
                         <Radio.Group
                             value={answers[q.key] || ''}
                             onChange={(val) => handleAnswer(q.key, val)}
                         >
                             {q.options.map((opt) => (
-                                <Radio key={opt.value} value={opt.value} label={opt.label} />
+                                <Radio size='md' key={opt.value} value={opt.value} label={opt.label} classNames={{root:'mb-2'}}/>
                             ))}
                         </Radio.Group>
                     </div>
