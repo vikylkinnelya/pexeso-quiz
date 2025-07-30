@@ -33,8 +33,9 @@ const robotoFlex = Roboto_Flex({
 });
 
 export const metadata = {
-    title: "Narozeninový kvíz",
-    description: "Personalizovaný zážitek s pexesem, přáním a mapou",
+  title: 'Pexeso Quiz',
+  description: 'Personalizovaný narozeninový kvíz',
+  manifest: '/manifest.json',
 };
 
 export default function RootLayout({ children }) {
