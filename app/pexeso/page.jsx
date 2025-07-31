@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button, Container } from '@mantine/core';
+import { Button } from '@mantine/core';
+import PageWrapper from '@/components/PageWrapper';
 
 const photos = [
     '/pexeso/foto1.png',
@@ -74,7 +75,6 @@ export default function PexesoPage() {
         }
     };
 
-
     const formatTime = (s) => {
         const m = Math.floor(s / 60).toString().padStart(2, '0');
         const sec = (s % 60).toString().padStart(2, '0');
@@ -82,42 +82,47 @@ export default function PexesoPage() {
     };
 
     return (
-        <Container size="xs"  className="min-h-screen flex flex-col items-center justify-center px-2 py-6">
-            <h2 className="text-lg mb-2 font-semibold sont-sans">Spoj všechny páry, {user?.name} 👀</h2>
-            <p className="mb-4 text-sm font-mono">
-                Čas: <span className="font-mono">{formatTime(elapsed)}</span>
-            </p>
+        <PageWrapper>
+            {user => (
+                <>
+                    <h1 className="text-lg mb-2 font-semibold sont-sans">Spoj všechny páry, {user?.name} 👀</h1>
+                    <p className="mb-4 text-sm font-mono">
+                        Čas: <span className="font-mono">{formatTime(elapsed)}</span>
+                    </p>
 
-            <div className="grid grid-cols-4 gap-2 w-full max-w-sm perspective">
-                {deck.map((card, i) => {
-                    const isFlipped = flipped.includes(i) || matched.includes(i);
-                    return (
-                        <div
-                            key={i}
-                            onClick={() => handleClick(i)}
-                            className="relative w-full aspect-square"
-                        >
-                            <div
-                                className={`transition-transform duration-500 w-full h-full [transform-style:preserve-3d] ${isFlipped ? 'rotate-y-180' : ''}`}
-                            >
-                                <img
-                                    src={card.src}
-                                    alt=""
-                                    className="absolute w-full h-full object-cover rounded-md [backface-visibility:hidden] rotate-y-180"
-                                />
-                                <div className="absolute w-full h-full bg-blue-400 rounded-md [backface-visibility:hidden] flex items-center justify-center text-white text-2xl font-bold">
-                                    ❓
+                    <div className="grid grid-cols-4 gap-2 w-full max-w-sm perspective">
+                        {deck.map((card, i) => {
+                            const isFlipped = flipped.includes(i) || matched.includes(i);
+                            return (
+                                <div
+                                    key={i}
+                                    onClick={() => handleClick(i)}
+                                    className="relative w-full aspect-square"
+                                >
+                                    <div
+                                        className={`transition-transform duration-500 w-full h-full [transform-style:preserve-3d] ${isFlipped ? 'rotate-y-180' : ''}`}
+                                    >
+                                        <img
+                                            src={card.src}
+                                            alt=""
+                                            className="absolute w-full h-full object-cover rounded-md [backface-visibility:hidden] rotate-y-180"
+                                        />
+                                        <div className="absolute w-full h-full bg-blue-400 rounded-md [backface-visibility:hidden] flex items-center justify-center text-white text-2xl font-bold">
+                                            ❓
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    );
-                })
-                }
-            </div>
+                            );
+                        })
+                        }
+                    </div>
 
-            <Button className="mt-6" disabled={!solved} onClick={() => router.push('/waiting')}>
-                Pokračovat
-            </Button>
-        </Container>
+                    <Button className="mt-6" disabled={!solved} onClick={() => router.push('/waiting')}>
+                        Pokračovat
+                    </Button>
+
+                </>
+            )}
+        </PageWrapper>
     );
 }

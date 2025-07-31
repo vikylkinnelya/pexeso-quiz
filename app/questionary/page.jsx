@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { Container, Radio, Button, Text } from '@mantine/core';
 import confetti from 'canvas-confetti';
+import PageWrapper from '@/components/PageWrapper';
 
 const restaurants = [
     {
@@ -105,9 +106,10 @@ export default function RestaurantPage() {
             return { name: r.name, score: matched.length };
         });
         const best = scoreMap.sort((a, b) => b.score - a.score)[0];
-        setResult(best);
-    };
 
+        sessionStorage.setItem('quizResult', best.name);
+        router.push('/result');
+    };
 
     useEffect(() => {
         if (!result) return;
@@ -132,8 +134,8 @@ export default function RestaurantPage() {
 
 
     return (
-        <Container size="xs" className="py-10 space-y-6">
-            <Text size="xl" className='font-sans' fw={700}> Najdeme ideální místo na dnešek</Text>
+        <PageWrapper>
+            <h1 size="xl" className='font-sans' fw={700}> Najdeme ideální místo na dnešek</h1>
 
             {questions.map((q, i) =>
                 i === 0 || Object.keys(answers).includes(questions[i - 1].key) ? (
@@ -144,30 +146,17 @@ export default function RestaurantPage() {
                             onChange={(val) => handleAnswer(q.key, val)}
                         >
                             {q.options.map((opt) => (
-                                <Radio size='md' key={opt.value} value={opt.value} label={opt.label} classNames={{root:'mb-2'}}/>
+                                <Radio size='md' key={opt.value} value={opt.value} label={opt.label} classNames={{ root: 'mb-2' }} />
                             ))}
                         </Radio.Group>
                     </div>
                 ) : null
             )}
 
-            {!result && Object.keys(answers).length === questions.length && (
+            {Object.keys(answers).length === questions.length && (
                 <Button onClick={calculateResult}>Zobrazit doporučení</Button>
             )}
 
-            {result && (
-                <div className="text-center mt-6 animate-bounce">
-                    <Text size="lg" fw={700}>🎉 Doporučuji:</Text>
-                    <Text
-                        size="xl"
-                        fw={700}
-                        className="text-blue-600 px-4 py-2 rounded-xl shadow-lg ring-2 ring-yellow-400 ring-offset-2"
-                    >
-                        {result.name}
-                    </Text>
-                </div>
-            )}
-
-        </Container>
+        </PageWrapper>
     );
 }

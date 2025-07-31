@@ -5,6 +5,7 @@ import { TextInput, Button, Container } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
 import { useRouter } from 'next/navigation';
 import 'dayjs/locale/cs';
+import PageWrapper from '@/components/PageWrapper';
 
 export default function QuizStartPage() {
     const methods = useForm();
@@ -17,7 +18,7 @@ export default function QuizStartPage() {
 
     return (
         <FormProvider {...methods}>
-            <Container size="xs" className="min-h-screen flex flex-col items-center justify-center   text-center px-4">
+            <PageWrapper protect={false}>
                 <h1 className="text-xl font-bold mb-6 text-center font-sans tracking-wide">🎁 Narozeninový kvíz</h1>
                 <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-8">
 
@@ -48,7 +49,7 @@ export default function QuizStartPage() {
                         Pokračovat
                     </Button>
                 </form>
-            </Container>
+            </PageWrapper>
         </FormProvider>
     );
 }
