@@ -1,8 +1,8 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Container, Radio, Button, Text } from '@mantine/core';
-import confetti from 'canvas-confetti';
 import PageWrapper from '@/components/PageWrapper';
+import { useRouter } from 'next/navigation';
 
 const restaurants = [
     {
@@ -93,12 +93,28 @@ const questions = [
 ];
 
 export default function RestaurantPage() {
+
+    const router = useRouter();
+
     const [answers, setAnswers] = useState({});
-    const [result, setResult] = useState(null);
+
+    const questionRefs = useRef([]);
 
     const handleAnswer = (key, value) => {
         setAnswers((prev) => ({ ...prev, [key]: value }));
     };
+
+    useEffect(() => {
+        const answeredKeys = Object.keys(answers);
+        if (answeredKeys.length === 0) return;
+
+        const lastIndex = answeredKeys.length;
+        const nextRef = questionRefs.current[lastIndex];
+        if (nextRef) {
+            nextRef.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, [answers]);
+
 
     const calculateResult = () => {
         const scoreMap = restaurants.map((r) => {
@@ -111,50 +127,43 @@ export default function RestaurantPage() {
         router.push('/result');
     };
 
-    useEffect(() => {
-        if (!result) return;
-
-        const count = 200;
-        const defaults = { origin: { y: 0.7 } };
-
-        const fire = (ratio, opts) => {
-            confetti({
-                ...defaults,
-                ...opts,
-                particleCount: Math.floor(count * ratio),
-            });
-        };
-
-        fire(0.25, { spread: 26, startVelocity: 55 });
-        fire(0.2, { spread: 60 });
-        fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
-        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
-        fire(0.1, { spread: 120, startVelocity: 45 });
-    }, [result]);
-
-
     return (
         <PageWrapper>
-            <h1 size="xl" className='font-sans' fw={700}> Najdeme ideální místo na dnešek</h1>
+            <h1 size="xl" className='font-sans mt-20 mb-8' fw={700}> Najdeme ideální místo na dnešek</h1>
 
-            {questions.map((q, i) =>
-                i === 0 || Object.keys(answers).includes(questions[i - 1].key) ? (
-                    <div key={q.key}>
-                        <p className="mb-4 font-semibold text-lg">{q.label}</p>
-                        <Radio.Group
-                            value={answers[q.key] || ''}
-                            onChange={(val) => handleAnswer(q.key, val)}
+            <div className='space-y-6 mb-8'>
+                {questions.map((q, i) =>
+                    i === 0 || Object.keys(answers).includes(questions[i - 1].key) ? (
+                        <div
+                            key={q.key}
+                            ref={(el) => (questionRefs.current[i] = el)}
+                            className="scroll-mb-40"
                         >
-                            {q.options.map((opt) => (
-                                <Radio size='md' key={opt.value} value={opt.value} label={opt.label} classNames={{ root: 'mb-2' }} />
-                            ))}
-                        </Radio.Group>
-                    </div>
-                ) : null
-            )}
-
+                            <p className="mb-4 text-left  font-semibold text-lg font-mono">{q.label}</p>
+                            <Radio.Group
+                                value={answers[q.key] || ''}
+                                onChange={(val) => handleAnswer(q.key, val)}
+                            >
+                                {q.options.map((opt) => (
+                                    <Radio
+                                        size='md'
+                                        key={opt.value}
+                                        value={opt.value}
+                                        label={opt.label}
+                                        classNames={{ root: 'mb-2', label: 'font-dongle' }}
+                                    />
+                                ))}
+                            </Radio.Group>
+                        </div>
+                    ) : null
+                )}
+            </div>
             {Object.keys(answers).length === questions.length && (
-                <Button onClick={calculateResult}>Zobrazit doporučení</Button>
+                <Button
+                    classNames={{ label: 'font-kablammo tracking-widest font-medium', root: 'animate-bounce mb-20' }}
+                    onClick={calculateResult}>
+                    Zobrazit doporučení
+                </Button>
             )}
 
         </PageWrapper>

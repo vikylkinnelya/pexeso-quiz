@@ -44,26 +44,30 @@ export default function CelebrationPage() {
                         Dneska ti je krásných <strong>{getAge(user.birthday)} let</strong>!
                     </h3>
 
-                    <div className="mb-6 mt-4 max-w-md font-roboto">
-                        <p className="text-base mb-1 font-roboto">🎁 První dárek je pro tebe připraven:</p>
-                        <p className="text-sm mb-2 font-mono">
-
+                    <div className="mb-6 mt-4 max-w-md font-mono">
+                        <p className="text-base mb-2">🎁 První dárek je pro tebe připraven:</p>
+                        <p className="text-sm mb-4">
                             <a
                                 href="/poukaz.rar"
                                 download
-                                className="text-blue-600 border-red-400 border-2 px-2 border-dashed font-mono"
+                                className=" text-yellow-300 text-base border-red-400 border-2 py-1 px-2 border-dashed font-kablammo"
                             >
                                 Stáhni si soubor 💾
                             </a>
                             .
                         </p>
-                        <p className="w-3/4 mx-auto text-sm font-mono">
+                        <p className="w-3/4 mx-auto text-sm font-mono mt-2">
                             Je zaheslovaný – heslo je celé tvoje datum narození <strong>ve formátu pouze čísla</strong>, např. <code>02031998</code>.
                         </p>
                     </div>
 
                     <p className="mb-6 font-sans tracking-normal">Chceš pokračovat za dalším překvapením? 👇</p>
-                    <Button onClick={() => router.push('/pexeso')}>Pokračovat</Button>
+                    <Button
+                        classNames={{ label: 'font-kablammo animate-pulse tracking-widest font-medium' }}
+                        onClick={() => router.push('/pexeso')}
+                    >
+                        Pokračovat
+                    </Button>
                 </>
             )}
         </PageWrapper>

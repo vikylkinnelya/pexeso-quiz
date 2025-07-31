@@ -28,18 +28,13 @@ const generateDeck = () => {
 
 export default function PexesoPage() {
     const router = useRouter();
-    const [user, setUser] = useState(null);
+
     const [deck, setDeck] = useState(generateDeck);
+
     const [flipped, setFlipped] = useState([]);
     const [matched, setMatched] = useState([]);
     const [solved, setSolved] = useState(false);
     const [elapsed, setElapsed] = useState(0);
-
-    useEffect(() => {
-        const stored = sessionStorage.getItem('quizUser');
-        if (!stored) router.replace('start');
-        else setUser(JSON.parse(stored));
-    }, []);
 
     // časovač
     useEffect(() => {
@@ -85,12 +80,15 @@ export default function PexesoPage() {
         <PageWrapper>
             {user => (
                 <>
-                    <h1 className="text-lg mb-2 font-semibold sont-sans">Spoj všechny páry, {user?.name} 👀</h1>
+                    <h1 className="text-lg mb-2 font-semibold font-sans tracking-wide">Spoj všechny páry, {user?.name} 👀</h1>
                     <p className="mb-4 text-sm font-mono">
                         Čas: <span className="font-mono">{formatTime(elapsed)}</span>
                     </p>
-
-                    <div className="grid grid-cols-4 gap-2 w-full max-w-sm perspective">
+                    <p className="mb-4 text-xs font-mono">
+                        P.S je tu na strance bug, proto nez zacnes delat pezeso musis si vyzoomovat obrazovku (zmensit ji).
+                        Teprve po tom to zacne fungovat. Testovane na ipxonu.
+                    </p>
+                    <div className="grid grid-cols-4 gap-2 w-full max-w-sm perspective mb-6">
                         {deck.map((card, i) => {
                             const isFlipped = flipped.includes(i) || matched.includes(i);
                             return (
@@ -117,7 +115,11 @@ export default function PexesoPage() {
                         }
                     </div>
 
-                    <Button className="mt-6" disabled={!solved} onClick={() => router.push('/waiting')}>
+                    <Button
+                        classNames={{ label: 'font-kablammo tracking-widest font-medium', root: solved? 'animate-bounce' : 'animate-pulse' }}
+                        disabled={!solved}
+                        onClick={() => router.push('/waiting')}
+                    >
                         Pokračovat
                     </Button>
 

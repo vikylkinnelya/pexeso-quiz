@@ -32,15 +32,43 @@ export default function ResultPage() {
         <PageWrapper protect={false}>
             {() => (
                 <>
-                    <h1 size="xl" fw={700} className="font-sans">🎉 Doporučuji:</h1>
-                    <p size="2xl" fw={900} className="text-blue-600 px-4 py-2 rounded-xl shadow-lg ring-2 ring-yellow-400 ring-offset-2">
+                    <h1 size="xl" fw={700} className="font-sans">🍽️ Doporučuji:</h1>
+                    <h2 size="2xl" fw={900} className=" px-4 py-2 text-xl font-sans">
                         {result}
-                    </p>
-                    <Button className="mt-6" onClick={() => router.push('/map')}>
+                    </h2>
+                    <Button
+                        classNames={{ label: 'font-kablammo tracking-widest font-medium', root: 'animate-bounce mt-20' }}
+                        onClick={() => router.push('/map')}>
                         Zobrazit na mapě
                     </Button>
+
+                    {/* Velký obrázek dole uprostřed */}
+                    <img
+                        src="/stickers/foto1.png"
+                        alt="main"
+                        className="absolute bottom-4 left-1/2 -translate-x-1/2 w-full rotate-2"
+                    />
+
+                    {/* 3 menší chaoticky umístěné nálepky */}
+                    <img
+                        src="/stickers/foto2.png"
+                        alt="heart"
+                        className="absolute top-6 left-4 w-1/3 rotate-[-12deg]"
+                    />
+                    <img
+                        src="/stickers/foto3.png"
+                        alt="star"
+                        className="absolute top-8 right-6 w-1/2 rotate-[18deg]"
+                    />
+                    <img
+                        src="/stickers/foto4.png"
+                        alt="smile"
+                        className="absolute bottom-40 right-8 w-2/5 rotate-[-6deg]"
+                    />
+                
                 </>
-            )}
-        </PageWrapper>
+            )
+}
+        </PageWrapper >
     );
 }

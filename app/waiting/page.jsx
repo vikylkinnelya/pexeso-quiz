@@ -31,11 +31,15 @@ export default function WaitingPage() {
     <PageWrapper onReady={handleConfetti}>
       {(user) => (
         <>
-          <h1 className="text-2xl font-bold mb-4 font-nabla tracking-wide">
+          <h1 className="text-2xl font-bold mb-4 font-kablammo tracking-wide">
             🎁 {user.name}, něco na tebe ještě čeká…
           </h1>
           <p className="mb-6 text-lg font-mono">Ale ještě si budeš muset chviličku počkat 😉</p>
-          <Button onClick={() => router.push('/questionary')}>Vyplnit dotazník</Button>
+          <Button 
+          classNames={{ label: 'font-kablammo tracking-widest font-medium' }}         
+          onClick={() => router.push('/questionary')}>
+            Vyplnit dotazník
+            </Button>
         </>
       )}
     </PageWrapper>

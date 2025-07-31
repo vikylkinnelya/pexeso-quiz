@@ -2,7 +2,7 @@
 
 import { useForm, FormProvider, Controller } from 'react-hook-form';
 import { TextInput, Button, Container } from '@mantine/core';
-import { DateInput } from '@mantine/dates';
+import { DateInput, DatePickerInput } from '@mantine/dates';
 import { useRouter } from 'next/navigation';
 import 'dayjs/locale/cs';
 import PageWrapper from '@/components/PageWrapper';
@@ -34,18 +34,21 @@ export default function QuizStartPage() {
                         control={methods.control}
                         rules={{ required: true }}
                         render={({ field }) => (
-                            <DateInput
+                            <DatePickerInput
                                 label="Datum narození"
                                 locale="cs"
                                 value={field.value}
                                 onChange={field.onChange}
                                 classNames={{ label: 'mb-2' }}
-
+                                dropdownType="modal"
                             />
                         )}
                     />
 
-                    <Button type="submit" fullWidth>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        classNames={{ label: 'font-kablammo animate-pulse tracking-widest font-medium' }}>
                         Pokračovat
                     </Button>
                 </form>

@@ -10,7 +10,7 @@ module.exports = {
             fontFamily: {
                 sans: ["var(--font-sans)"],
                 mono: ["var(--font-mono)"],
-                nabla: ["var(--font-nabla)"],
+                kablammo: ["var(--font-kablammo)"],
                 roboto: ["var(--font-roboto)"],
             },
         },
