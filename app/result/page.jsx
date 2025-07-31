@@ -10,10 +10,7 @@ export default function ResultPage() {
     const router = useRouter();
 
     useEffect(() => {
-        const stored = sessionStorage.getItem('quizResult');
-        if (!stored) router.replace('/restaurant');
-        else setResult(stored);
-
+        
         // animace
         const count = 200;
         const defaults = { origin: { y: 0.7 } };
@@ -29,7 +26,7 @@ export default function ResultPage() {
     if (!result) return null;
 
     return (
-        <PageWrapper protect={false}>
+        <PageWrapper protect={true}>
             {() => (
                 <>
                     <h1 size="xl" fw={700} className="font-sans">🍽️ Doporučuji:</h1>

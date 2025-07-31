@@ -48,7 +48,7 @@ export default function CelebrationPage() {
                         <p className="text-base mb-2">🎁 První dárek je pro tebe připraven:</p>
                         <p className="text-sm mb-4">
                             <a
-                                href="/poukaz.rar"
+                                href="/poukaz.pdf"
                                 download
                                 className=" text-yellow-300 text-base border-red-400 border-2 py-1 px-2 border-dashed font-kablammo"
                             >
