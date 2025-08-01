@@ -3,41 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Container, Radio, Button, Text } from '@mantine/core';
 import PageWrapper from '@/components/PageWrapper';
 import { useRouter } from 'next/navigation';
-
-const restaurants = [
-    {
-        name: 'U Dudáka',
-        tags: ['české', 'terasa', 'známé', 'klasika'],
-    },
-    {
-        name: 'Kavkaz',
-        tags: ['gruzínské', 'terasa', 'nové', 'exotika'],
-    },
-    {
-        name: 'Ostrov',
-        tags: ['české', 'terasa', 'ostrov', 'klasika', 'výlet'],
-    },
-    {
-        name: 'Atollo',
-        tags: ['středomořské', 'pěšky', 'alkohol', 'byl'],
-    },
-    {
-        name: 'Thessaloniki',
-        tags: ['řecké', 'terasa', 'výlet', 'příroda', 'nové'],
-    },
-    {
-        name: 'Na Krétě',
-        tags: ['řecké', 'byli', 'klasika'],
-    },
-    {
-        name: 'Palác',
-        tags: ['americké', 'elegantní'],
-    },
-    {
-        name: 'Pancho’s',
-        tags: ['mexické', 'exotika', 'nové'],
-    },
-];
+import { restaurants } from '@/lib/restaurants';
 
 const questions = [
     {
@@ -129,7 +95,7 @@ export default function RestaurantPage() {
 
     return (
         <PageWrapper>
-            <h1 size="xl" className='font-sans mt-20 mb-8' fw={700}> Najdeme ideální místo na dnešek</h1>
+            <h1 size="xl" className='font-sans mt-20 mb-8'> Najdeme ideální místo na dnešek</h1>
 
             <div className='space-y-6 mb-8'>
                 {questions.map((q, i) =>

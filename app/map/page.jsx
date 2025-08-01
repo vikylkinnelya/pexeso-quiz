@@ -6,76 +6,9 @@ import { IconHome } from '@tabler/icons-react';
 import { Map, AdvancedMarker } from '@vis.gl/react-google-maps';
 import PageWrapper from '@/components/PageWrapper';
 import MapProvider from '@/components/MapProvider';
+import { restaurants } from '@/lib/restaurants';
 
 const PRIBRAM_CENTER = { lat: 49.6829803, lng: 13.9908597 };
-
-const restaurants = [
-    {
-        name: 'U Dudáka',
-        lat: 49.2552753,
-        lng: 13.9113606,
-        logo: 'https://scontent.fprg4-1.fna.fbcdn.net/v/t39.30808-6/291140291_458403936285339_3161109284992074126_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=xFM2FxUuU9IQ7kNvwGAnLwK&_nc_oc=AdmKgHE6DnqfyTkfzRO9_BOdLz7sTQVPyDJ9fEVH9OUltTEMT8jGyRaeU7IvKbl47Bs&_nc_zt=23&_nc_ht=scontent.fprg4-1.fna&_nc_gid=07HxFJ-pkBn0_tEAGYvMOg&oh=00_AfRHgoZk3Ft-pZGk7z8979ewDD31_vcG83B0qN_RA43Hqg&oe=688C1DFE',
-        tags: ['české', 'terasa', 'klasika', 'známé'],
-        address: 'A. Šťastného 171, 386 01 Strakonice' // z webu :contentReference[oaicite:1]{index=1}
-    },
-    {
-        name: 'Kavkaz',
-        lat: 49.7635619,
-        lng: 13.3698839,
-        logo: 'https://www.bistrokavkaz.cz/wp-content/uploads/2024/06/Logo_www.png',
-        tags: ['gruzínské', 'terasa', 'exotika', 'nové'],
-        address: 'Lidická 481/13, 323 00 Plzeň' // z webu :contentReference[oaicite:2]{index=2}
-    },
-    {
-        name: 'Ostrov',
-        lat: 49.3060747,
-        lng: 14.1419356,
-        logo: 'https://scontent.fprg4-1.fna.fbcdn.net/v/t39.30808-6/245252043_3021924121398671_377373262491197621_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=jEsG7gSUKwsQ7kNvwEhfKc7&_nc_oc=AdndoMSaomgCYzUSp11wZz5LM0396BcAbXvgdul8D2YRycKe-aXB6I1ekP-jbBb6CO0&_nc_zt=23&_nc_ht=scontent.fprg4-1.fna&_nc_gid=kCdSmQH2Fw5t9r1CZiV0Gw&oh=00_AfQyZ5vChkd1qx2bta-M70NfeG5QQdqrnjwCXfUopn3BBQ&oe=688BEDAC',
-        tags: ['české', 'terasa', 'ostrov', 'klasika'],
-        address: 'Na Ostrově 165, 397 01 Písek' // až z webu :contentReference[oaicite:3]{index=3}
-    },
-    {
-        name: 'Atollo',
-        lat: 49.6829803,
-        lng: 13.9908597,
-        logo: 'https://www.atollo.cz/img/engine/pub/logo.png',
-        tags: ['středomořské', 'alkohol', 'pěšky', 'byl'],
-        address: 'Mariánská 285, 261 01 Příbram' // z webu :contentReference[oaicite:4]{index=4}
-    },
-    {
-        name: 'Taverna Thessaloniki',
-        lat: 49.8925711,
-        lng: 14.3990875,
-        logo: 'https://scontent.fprg4-1.fna.fbcdn.net/v/t39.30808-6/359486619_807991594268363_7379150175428595955_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=i1VQuEiuiusQ7kNvwE68Qoi&_nc_oc=AdmYQffBCJHWDlIpQV__iyMQyq0UDXR6OdHlGu7jHZInaHiefAp-CYwx2h7yk-r9asI&_nc_zt=23&_nc_ht=scontent.fprg4-1.fna&_nc_gid=eUaTwVfjPwHl9R-EFuY9YQ&oh=00_AfQ3rDhzrf90THwNM62QJDDV-gH41COEqKZFnZX5ndpQgg&oe=688BEA08',
-        tags: ['řecké', 'terasa', 'výlet', 'příroda', 'nové'],
-        address: 'Vltavská 168, 252 06 Davle (směr Praha)' // z firmay? použito tripadvisor Davle :contentReference[oaicite:5]{index=5}
-    },
-    {
-        name: 'Na Krétě',
-        lat: 49.8355606,
-        lng: 13.910185,
-        logo: 'https://scontent.fprg4-1.fna.fbcdn.net/v/t39.30808-6/510439684_9981576551889608_8609548201971610804_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=icToLKS8LIsQ7kNvwG6nC2X&_nc_oc=AdmHYI_xUOd-Z8gL2KNQhrokdEn1HAJ3_yjqOU74dOpnvPqHrh9fDikCSkvX9tDVtD8&_nc_zt=23&_nc_ht=scontent.fprg4-1.fna&_nc_gid=MqNtU9CoP4W1udIaL1lprA&oh=00_AfQsIzVjbzYePtk-lC1nA-nGF4yD903fsNSAJT_tqyyjeg&oe=688C0DFE',
-        tags: ['řecké', 'klasika', 'byli'],
-        address: 'Milinovského 908/6, 268 01 Hořovice' // z webu :contentReference[oaicite:6]{index=6}
-    },
-    {
-        name: 'Palác',
-        lat: 49.9246478,
-        lng: 14.3353853,
-        logo: 'https://20b8a98d79.clvaw-cdnwnd.com/3b9e5df99db608ecc3e62f27d4c0be1c/200000442-1e16a1e16c/450/logo%20vetsi.webp?ph=20b8a98d79',
-        tags: ['americké', 'elegantní'],
-        address: 'Všenorská 45, 252 02 Jíloviště (směr Praha)' // z Yelp :contentReference[oaicite:7]{index=7}
-
-    },
-    {
-        name: 'Pancho’s',
-        lat: 49.7375608,
-        lng: 13.3877344,
-        logo: 'https://www.panchos.cz/images/black-logo-colorful.png',
-        tags: ['mexické', 'exotika', 'nové'],
-        address: 'Slovanská 16, 326 00 Plzeň' // z webu :contentReference[oaicite:8]{index=8}
-    },
-];
 
 const availableTags = [...new Set(restaurants.flatMap((r) => r.tags))];
 
