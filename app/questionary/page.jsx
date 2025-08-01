@@ -65,6 +65,7 @@ export default function RestaurantPage() {
     const [answers, setAnswers] = useState({});
 
     const questionRefs = useRef([]);
+    const buttonRef = useRef(null);
 
     const handleAnswer = (key, value) => {
         setAnswers((prev) => ({ ...prev, [key]: value }));
@@ -75,12 +76,17 @@ export default function RestaurantPage() {
         if (answeredKeys.length === 0) return;
 
         const lastIndex = answeredKeys.length;
-        const nextRef = questionRefs.current[lastIndex];
-        if (nextRef) {
-            nextRef.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // pokud jsou zodpovězeny všechny, scrollni na button
+        if (answeredKeys.length === questions.length && buttonRef.current) {
+            buttonRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            const nextRef = questionRefs.current[lastIndex];
+            if (nextRef) {
+                nextRef.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
     }, [answers]);
-
 
     const calculateResult = () => {
         const scoreMap = restaurants.map((r) => {
@@ -126,6 +132,7 @@ export default function RestaurantPage() {
             </div>
             {Object.keys(answers).length === questions.length && (
                 <Button
+                    ref={buttonRef}
                     classNames={{ label: 'font-kablammo tracking-widest font-medium', root: 'animate-bounce mb-20' }}
                     onClick={calculateResult}>
                     Zobrazit doporučení

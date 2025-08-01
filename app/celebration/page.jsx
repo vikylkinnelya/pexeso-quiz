@@ -50,7 +50,7 @@ export default function CelebrationPage() {
                             <a
                                 href="/poukaz.pdf"
                                 download
-                                className=" text-yellow-300 text-base border-red-400 border-2 py-1 px-2 border-dashed font-kablammo"
+                                className=" text-yellow-300 tracking-widest text-base border-red-400 border-2 py-1 px-2 border-dashed font-kablammo"
                             >
                                 Stáhni si soubor 💾
                             </a>

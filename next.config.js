@@ -11,6 +11,13 @@ const nextConfig = {
     experimental: {
         optimizePackageImports: ["@mantine/core", "@mantine/hooks"],
     },
+    images: {
+        remotePatterns: [
+            new URL("https://www.bistrokavkaz.cz/**"), 
+            new URL("https://www.atollo.cz/**"),
+            new URL("https://www.panchos.cz/**")
+        ],
+    },
     webpack: (config, { isServer }) => {
         if (!isServer) {
             config.resolve.fallback = { ...config.resolve.fallback, fs: false };

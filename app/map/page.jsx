@@ -7,6 +7,7 @@ import { Map, AdvancedMarker } from '@vis.gl/react-google-maps';
 import PageWrapper from '@/components/PageWrapper';
 import MapProvider from '@/components/MapProvider';
 import { restaurants } from '@/lib/restaurants';
+import Image from 'next/image';
 
 const PRIBRAM_CENTER = { lat: 49.6829803, lng: 13.9908597 };
 
@@ -125,7 +126,7 @@ export default function RestaurantMapPage() {
                                                 className={`rounded-full border-2 ${isHighlighted ? 'border-yellow-500 shadow-lg' : 'border-white'
                                                     }`}
                                             >
-                                                <img
+                                                <Image
                                                     src={r.logo}
                                                     alt={r.name}
                                                     width={42}
