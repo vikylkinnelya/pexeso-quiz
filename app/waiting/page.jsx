@@ -35,11 +35,19 @@ export default function WaitingPage() {
             🎁 {user.name}, něco na tebe ještě čeká…
           </h1>
           <p className="mb-6 text-lg font-mono">Ale ještě si budeš muset chviličku počkat 😉</p>
-          <Button 
-          classNames={{ label: 'font-kablammo tracking-widest font-medium' }}         
-          onClick={() => router.push('/questionary')}>
+
+          <p className="mb-6 text-base text-center max-w-md font-sans">
+            Protože jsi to pexeso zvládl tak krásně, dostaneš ještě jeden menší dáreček,
+            <br />
+            ať se náhodou nenudíš.
+            <br />
+            Je stejně krásný jako to síťko pro maminku. 🎁✨Najsi si to !
+          </p>
+          <Button
+            classNames={{ label: 'font-kablammo tracking-widest font-medium' }}
+            onClick={() => router.push('/questionary')}>
             Vyplnit dotazník
-            </Button>
+          </Button>
         </>
       )}
     </PageWrapper>
