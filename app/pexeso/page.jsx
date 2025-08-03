@@ -84,7 +84,7 @@ export default function PexesoPage() {
                     <p className="mb-4 text-sm font-mono">
                         Čas: <span className="font-mono">{formatTime(elapsed)}</span>
                     </p>
-                    <p className="mb-4 text-xs font-mono">
+                    <p className="mb-4 text-sm font-mono">
                         P.S je tu na strance bug, proto nez zacnes delat pezeso musis si vyzoomovat obrazovku (zmensit ji).
                         Teprve po tom to zacne fungovat. Testovane na ipxonu.
                     </p>

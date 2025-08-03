@@ -22,7 +22,7 @@ export default function ReturnPage() {
     return (
         <PageWrapper protect={false}>
             <div className="text-center space-y-4">
-                <h1 className='text-xl font-sans mt-20 mb-6'>🎁 Nelíbí se Vam dárek?</h1>
+                <h1 className='text-xl font-sans mb-6'>🎁 Nelíbí se Vam dárek?</h1>
                 <h2 className='text-xl tracking-widest font-kablammo' >Seš posral?! 🤨</h2>
                 <p className="font-mono">Dobře no... můžeš zkusit výměnu:</p>
 

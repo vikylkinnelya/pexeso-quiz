@@ -101,7 +101,7 @@ export default function RestaurantPage() {
 
     return (
         <PageWrapper>
-            <h1 size="xl" className='font-sans mt-20 mb-8'> Najdeme ideální místo na dnešek</h1>
+            <h1 size="xl" className='font-sans mb-8'> Najdeme ideální místo na dnešek</h1>
 
             <div className='space-y-6 mb-8'>
                 {questions.map((q, i) =>
