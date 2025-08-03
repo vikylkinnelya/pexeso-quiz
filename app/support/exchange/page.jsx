@@ -30,6 +30,12 @@ export default function ExchangePage() {
                     Už si nestěžuj. 🔥🎁
                 </p>
 
+                <Link
+                    href="/support/exchange-voucher"
+                    className="text-sm underline font-mono text-blue-600 hover:text-blue-800 mt-2"
+                >
+                    ✉️ A nezapomeň si vyzvednout malý bonusový poukaz
+                </Link>
             </div>
         </PageWrapper>
     );
