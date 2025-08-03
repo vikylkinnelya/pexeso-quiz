@@ -18,6 +18,13 @@ const nextConfig = {
             new URL("https://www.panchos.cz/**")
         ],
     },
+    redirects: async () => [
+    {
+      source: '/',
+      destination: '/start',
+      permanent: true,
+    },
+  ],
     webpack: (config, { isServer }) => {
         if (!isServer) {
             config.resolve.fallback = { ...config.resolve.fallback, fs: false };
