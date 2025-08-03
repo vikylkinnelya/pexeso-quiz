@@ -2,6 +2,7 @@
 import { Text, Title } from '@mantine/core';
 import PageWrapper from '@/components/PageWrapper';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function ExchangePage() {
     return (

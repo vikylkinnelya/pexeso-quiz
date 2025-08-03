@@ -40,7 +40,6 @@ export default function QuizStartPage() {
                                 value={field.value}
                                 onChange={field.onChange}
                                 classNames={{ label: 'mb-2' }}
-                                dropdownType="modal"
                             />
                         )}
                     />
