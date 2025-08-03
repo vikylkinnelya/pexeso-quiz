@@ -49,7 +49,7 @@ export default function ResultPage() {
                     {/* Velký obrázek dole uprostřed */}
                     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rotate-2 w-60 h-auto">
                         <Image
-                            src="/stickers/foto1.png"
+                            src="/stickers/foto1.PNG"
                             alt="main"
                             width={240}
                             height={240}
@@ -60,15 +60,15 @@ export default function ResultPage() {
 
                     {/* 3 menší chaotické nálepky */}
                     <div className="absolute top-6 left-4 w-32 rotate-[-12deg]">
-                        <Image src="/stickers/foto2.png" alt="heart" width={128} height={128} />
+                        <Image src="/stickers/foto2.PNG" alt="heart" width={128} height={128} />
                     </div>
 
                     <div className="absolute top-8 right-6 w-48 rotate-[18deg]">
-                        <Image src="/stickers/foto3.png" alt="star" width={192} height={192} />
+                        <Image src="/stickers/foto3.PNG" alt="star" width={192} height={192} />
                     </div>
 
                     <div className="absolute bottom-40 right-8 w-40 rotate-[-6deg]">
-                        <Image src="/stickers/foto4.png" alt="smile" width={160} height={160} />
+                        <Image src="/stickers/foto4.PNG" alt="smile" width={160} height={160} />
                     </div>
                 </div>
             )}
